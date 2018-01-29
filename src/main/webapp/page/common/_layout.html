@@ -13,7 +13,7 @@
     <title>Carousel Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -27,17 +27,16 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.js"></script>
     <![endif]-->
-
+    <link href="/assets/css/jumbotron.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="/css/carousel.css" rel="stylesheet">
+    <link href="/assets/css/carousel.css" rel="stylesheet">
   </head>
 <!-- NAVBAR
 ================================================== -->
   <body>
-    <div class="navbar-wrapper">
-      <div class="container">
 
-        <nav class="navbar navbar-inverse navbar-static-top">
+
+        <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -66,17 +65,21 @@
                   </ul>
                 </li>
               </ul>
-            </div>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">Default</a></li>
+                <li><a href="../navbar-static-top/">Static top</a></li>
+                <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
           </div>
         </nav>
 
-      </div>
-    </div>
+
     
-    
-	<div class="main">
-			#@main()
-	</div>
+
+        #@main()
+
+
 
     
 </html>

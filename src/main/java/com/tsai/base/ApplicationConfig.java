@@ -1,14 +1,12 @@
 package com.tsai.base;
-
-import com.demo.blog.BlogController;
-import com.demo.common.model._MappingKit;
-import com.demo.index.IndexController;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
+import com.tsai.login.LoginController;
+import com.tsai.main.controller.IndexController;
+import com.tsai.project.ProjectController;
 
 public class ApplicationConfig extends JFinalConfig {
 
@@ -44,13 +42,15 @@ public class ApplicationConfig extends JFinalConfig {
      * 配置路由
      */
     public void configRoute(Routes me) {
-        me.add("/", IndexController.class, "/index");	// 第三个参数为该Controller的视图存放路径
-        me.add("/blog", BlogController.class);			// 第三个参数省略时默认与第一个参数值相同，在此即为 "/blog"
+       me.add("/", IndexController.class, "/page/index");	// 第三个参数为该Controller的视图存放路径
+        me.add("/login", LoginController.class, "/page/login");	// 第三个参数为该Controller的视图存放路径
+        me.add("/project", ProjectController.class, "/page/project");	// 第三个参数为该Controller的视图存放路径
+      //  me.add("/blog", BlogController.class);			// 第三个参数省略时默认与第一个参数值相同，在此即为 "/blog"
     }
 
     public void configEngine(Engine me) {
-        me.addSharedFunction("/common/_layout.html");
-        me.addSharedFunction("/common/_paginate.html");
+        me.addSharedFunction("page/common/_layout.html");
+        me.addSharedFunction("page/common/_paginate.html");
     }
 
     /**
@@ -58,18 +58,18 @@ public class ApplicationConfig extends JFinalConfig {
      */
     public void configPlugin(Plugins me) {
         // 配置 druid 数据库连接池插件
-        DruidPlugin druidPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
+        DruidPlugin druidPlugin = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("login"), PropKit.get("password").trim());
         me.add(druidPlugin);
 
         // 配置ActiveRecord插件
-        ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
+       // ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
         // 所有映射在 MappingKit 中自动化搞定
-        _MappingKit.mapping(arp);
-        me.add(arp);
+       // _MappingKit.mapping(arp);
+      //  me.add(arp);
     }
 
     public static DruidPlugin createDruidPlugin() {
-        return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
+        return new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("login"), PropKit.get("password").trim());
     }
 
     /**

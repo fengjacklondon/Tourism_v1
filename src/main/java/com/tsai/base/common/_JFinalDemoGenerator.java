@@ -1,10 +1,10 @@
 package com.tsai.base.common;
 
-import com.demo.common.DemoConfig;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.generator.Generator;
 import com.jfinal.plugin.druid.DruidPlugin;
+import com.tsai.base.ApplicationConfig;
 
 import javax.sql.DataSource;
 
@@ -17,8 +17,8 @@ import javax.sql.DataSource;
 public class _JFinalDemoGenerator {
 	
 	public static DataSource getDataSource() {
-		PropKit.use("a_little_config.txt");
-		DruidPlugin druidPlugin = DemoConfig.createDruidPlugin();
+		PropKit.use("application.txt");
+		DruidPlugin druidPlugin = ApplicationConfig.createDruidPlugin();
 		druidPlugin.start();
 		return druidPlugin.getDataSource();
 	}
